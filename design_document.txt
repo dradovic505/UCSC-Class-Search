@@ -1,0 +1,15 @@
+1. Install python virtual environment, selenium web driver for firefox
+2. Use Selenium to click on dropdowns
+  3. Click on status for All Classes
+  4. Term will stay 2019 Fall Quarter for now
+  5. Subject: click 'all subjects'
+  6. Click Search
+    7. Organize by major (so AM, ANTH, CMPS, etc)
+
+8. Store in .json file where key is the major (see 7.)
+  9. Value is an array of key-value pairs where key = class name
+    10. and value is array of key-value pairs where
+      11. keys = career, class number, status, available seats, wait list total,
+          GE, credits, days and times, room, instructor
+
+12. Need to figure out database situation, front-end situation
