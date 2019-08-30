@@ -13,10 +13,15 @@ mydb = mysql.connector.connect(
 )
 
 db = mydb.cursor()
-db.execute('CREATE DATABASE class_search')
+# db.execute('CREATE DATABASE class_search')
 
-db.execute('CREATE TABLE classes (id INT AUTO_INCREMENT PRIMARY KEY,           \
-            subject VARCHAR(255), class_number MEDIUMINT, career VARCHAR(255), \
-            status VARCHAR(255), available_seats MEDIUMINT,                    \
-            wait_list_total MEDIUMINT, ge VARCHAR(255), credits MEDIUMINT,     \
-            meeting_times VARCHAR(255), room VARCHAR(255), instructor VARCHAR(255))')
+db.execute('CREATE TABLE IF NOT EXISTS classes (id INT AUTO_INCREMENT PRIMARY KEY,            \
+            subject VARCHAR(500), class_number INT, career VARCHAR(500),        \
+            status VARCHAR(500), available_seats INT,                           \
+            wait_list_total INT, ge VARCHAR(500), credits INT,                  \
+            meeting_times VARCHAR(500), room VARCHAR(500), instructor VARCHAR(500))')
+
+db.execute('SELECT id, subject FROM classes')
+myresult = db.fetchall()
+for x in myresult:
+    print(x)
