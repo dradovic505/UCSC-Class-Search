@@ -2,13 +2,15 @@
 #source env/bin/activate
 import math, requests, time, mysql.connector
 from selenium import webdriver
+import yaml
 
 #database set up in class_database.py, now we can use it here
+my_credentials = yaml.safe_load(open('db.yaml'))
 mydb = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='',
-    database='class_search'
+    host=my_credentials['mysql_host'],
+    user=my_credentials['mysql_user'],
+    password=my_credentials['mysql_password'],
+    database=my_credentials['mysql_db']
 )
 db = mydb.cursor()
 
@@ -72,17 +74,16 @@ def handle_page():
     pg_len = len(browser.find_elements_by_css_selector('[id*="class_id_"]'))
     print('pg len: ' + str(pg_len))
     for i in range(pg_len):
-        time.sleep(2)
         list_classes = browser.find_elements_by_css_selector('[id*="class_id_"]')
         print('pg len internal: ' + str(len(list_classes)))
-        time.sleep(3)       #be kind to server
+        time.sleep(2)       #be kind to server
         print('index: ' + str(i))
         list_classes[i].click()
         handle_class()
 
         #go back to main page
         back_button = browser.find_element_by_xpath('//*[@id="back_link"]')
-        time.sleep(3)
+        time.sleep(2)
         back_button.click()
 
 ########End functions########
@@ -90,11 +91,8 @@ def handle_page():
 handle_initial_page()
 total_classes = browser.find_element_by_xpath('/html/body/div[2]/div[2]/div[2]/div[1]/b[3]').text
 num_pages = math.floor(int(total_classes)/100)
-print(num_pages)
 for i in range(num_pages):
-    time.sleep(3)
     handle_page()
     next_page = browser.find_element_by_link_text('next')
-    time.sleep(3)
     next_page.click()
 browser.quit()
