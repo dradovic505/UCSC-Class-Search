@@ -10,7 +10,7 @@ mydb = mysql.connector.connect(
     password=my_credentials['mysql_password'],
     database=my_credentials['mysql_db']
 )
-db = mydb.cursor()
+db = mydb.cursor(prepared=True)
 
 db.execute('CREATE DATABASE IF NOT EXISTS class_search')
 

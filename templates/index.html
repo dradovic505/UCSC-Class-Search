@@ -1,0 +1,76 @@
+<!-- <form method="POST" action="">
+  Name <input type="text" name="name"/>
+  <br>
+  Email <input type="text" name="email"/>
+  <br>
+  <input type="submit">
+</form> -->
+<!-- <h1>HTML Injection testing</h1> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Class Search</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- <script src="/static/index.js"></script> -->
+</head>
+
+<body>
+
+  <h1>UCSC Class Search</h1>
+
+  <div id="messages">
+    <input type="submit" name="messages" value="Recieve Telegram messages for classes">
+  </div>
+
+  <div class="search-option">
+    Term
+    <select>
+      <option>Fall 2019</option>
+    </select>
+  </div>
+
+  <div class="search-option">
+    Status
+    <select>
+      <option>All Classes</option>
+      <option>Open Classes</option>
+    </select>
+  </div>
+
+  <div class="search-option">
+    <form method="POST" action="">
+      Subject
+      <input type="text" name="subject" />
+    </form>
+  </div>
+
+  <div class="search-option">
+    <form method="POST" action="">
+      Course Number
+      <input type="text" name="subject" />
+    </form>
+  </div>
+
+  <div class="search-option">
+    <form method="POST" action="">
+      Course Units (between 0 and 10)
+      <input type="text" name="subject" />
+    </form>
+  </div>
+
+  <div id="select-all">
+    <form method="POST" action="">
+      <input type="submit" name="search" value="Show all classes">
+    </form>
+  </div>
+
+  <div id="search">
+    <input type="submit" name="search" value="Search">
+  </div>
+
+
+</body>
+
+</html>

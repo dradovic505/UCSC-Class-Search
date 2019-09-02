@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
     password=my_credentials['mysql_password'],
     database=my_credentials['mysql_db']
 )
-db = mydb.cursor()
+db = mydb.cursor(prepared=True)
 
 #I'm using firefox
 browser = webdriver.Firefox()
@@ -66,7 +66,7 @@ def handle_class():
             available_seats, wait_list_total, ge, credits, meeting_times, room,\
             instructor) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
     val = (subject, int(class_number), career, status, int(available_seats),   \
-           int(wait_list_total), ge, int(credits), meeting_times, room, instructor)
+           int(wait_list_total), ge, int(credits), meeting_times, room, instructor,)
     db.execute(query, val)
     mydb.commit()
 
