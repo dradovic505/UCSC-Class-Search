@@ -65,9 +65,9 @@ def handle_class():
     query = 'INSERT INTO classes (subject, class_number, career, status,       \
             available_seats, wait_list_total, ge, credits, meeting_times, room,\
             instructor) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
-    val = (subject, int(class_number), career, status, int(available_seats),   \
+    vals = (subject, int(class_number), career, status, int(available_seats),   \
            int(wait_list_total), ge, int(credits), meeting_times, room, instructor,)
-    db.execute(query, val)
+    db.execute(query, vals)
     mydb.commit()
 
 def handle_page():

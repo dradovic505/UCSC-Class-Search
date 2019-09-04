@@ -19,28 +19,47 @@ db = mydb.cursor(prepared=True)
 def index():
     # url_for('static', filename='style.css')
     if request.method == 'POST':
-        print(request.form)
-        if request.form['search'] == 'Show all classes':
+        class_info = request.form
+
+        subject = class_info['subject']
+        if subject == '':
+            print('yikes')
+            subject = '*'
+        class_number = class_info['class number']
+        status = class_info['???']
+        credits = class_info['credits']
+
+        query = 'SELECT * FROM classes WHERE subject=%s, class_number=%s, status=%s, credits=%s'
+        vals = (subject, class_number, status, credits)
+        db.execute(query, vals)
+        results = db.fetchall()
+
+        if class_info['search'] == 'Show all classes':
             print('Asking to show all classes')
-        elif request.form['search'] == 'Search':
+        elif class_info['search'] == 'Search':
             print('Asking for search')
 
-    elif request.method == 'GET':
-            
+        return redirect('/results', classes=class_info)
+
         #escaping to prevent XSS attack
-        # name = str(utils.escape(userDetails['name']))
-        # email = str(utils.escape(userDetails['email']))
+        # status = str(utils.escape(userDetails['name']))
+        # subject = str(utils.escape(userDetails['email']))
+        # class_number = str(utils.escape(userDetails['email']))
+        # credits = str(utils.escape(userDetails['email']))
         # sql_command = 'INSERT INTO users(name,email) VALUES (%s, %s)'
         # db.execute(sql_command, (escape(name), escape(email)))
         # mydb.commit()
         # return redirect('/results')
     return render_template('index.html')
 
+# status, subject, class number, credits
+
 # @app.route('/results')
-# def users():
+# def results():
+#     sql_command = 'SELECT * FROM classes WHERE '
 #     db.execute('SELECT * FROM users')
-#     userDetails = db.fetchall()
-#     if userDetails:
+#     classDetails = db.fetchall()
+#     if classDetails:
 #         return render_template('users.html', userDetails=userDetails)
 #     else:
 #         return 'There\'s no users yet!'
@@ -48,4 +67,4 @@ def index():
 #     #     return redirect('/')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -1,0 +1,16 @@
+<table border=1>
+  {% for class in classes %}
+  <tr>
+    <!--status-->
+    <td> "{{class[0]}}" </td>
+    <!--subject-->
+    <td> "{{class[1]}}" </td>
+    <!--course number-->
+    <td> "{{class[2]}}" </td>
+    <!--credits-->
+    <td> "{{class[3]}}" </td>
+  </tr>
+  {% endfor %}
+</table>
+<button type="submit">Home</button>
+<!-- <input type="submit" Home> -->

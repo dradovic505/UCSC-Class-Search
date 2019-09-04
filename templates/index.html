@@ -12,7 +12,8 @@
 
 <head>
   <title>Class Search</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- <link rel="stylesheet" href="/static/style.css"> -->
   <!-- <script src="/static/index.js"></script> -->
 </head>
 
@@ -31,45 +32,38 @@
     </select>
   </div>
 
-  <div class="search-option">
-    Status
-    <select>
-      <option>All Classes</option>
-      <option>Open Classes</option>
-    </select>
-  </div>
+  <form method="POST" action="">
+    <div class="search-option">
+      Status
+      <select>
+        <option>All Classes</option>
+        <option>Open Classes</option>
+      </select>
+    </div>
 
-  <div class="search-option">
-    <form method="POST" action="">
+    <div class="search-option">
       Subject
       <input type="text" name="subject" />
-    </form>
-  </div>
+    </div>
 
-  <div class="search-option">
-    <form method="POST" action="">
-      Course Number
-      <input type="text" name="subject" />
-    </form>
-  </div>
+    <div class="search-option">
+      class number
+      <input type="text" name="class number" />
+    </div>
 
-  <div class="search-option">
-    <form method="POST" action="">
-      Course Units (between 0 and 10)
-      <input type="text" name="subject" />
-    </form>
-  </div>
+    <div class="search-option">
+      Course credits (between 0 and 10)
+      <input type="text" name="credits" />
+    </div>
 
-  <div id="select-all">
-    <form method="POST" action="">
+    <div id="select-all">
       <input type="submit" name="search" value="Show all classes">
-    </form>
-  </div>
+    </div>
 
-  <div id="search">
-    <input type="submit" name="search" value="Search">
-  </div>
-
+    <div id="search">
+      <input type="submit" name="search" value="Search">
+    </div>
+  </form>
 
 </body>
 
